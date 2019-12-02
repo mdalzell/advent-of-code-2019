@@ -1,2 +1,5 @@
 # advent-of-code-2019
-Programs for the 2019 Advent of Code
+
+2019 Advent of Code
+
+For more information, check out the [Advent of Code site](https://adventofcode.com/2019)
