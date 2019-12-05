@@ -3,9 +3,7 @@ import sys
 def calculateMinSignalDelay(wire1, wire2):
     wire1pointsList = convertWireStringToPointSet(wire1)
     wire2pointsList = convertWireStringToPointSet(wire2)
-    wire1points = set(wire1pointsList)
-    wire2points = set(wire2pointsList)
-    intersection = wire1points.intersection(wire2points)
+    intersection = findIntersection(wire1pointsList, wire2pointsList)
 
     minDistance = sys.maxsize
     for point in intersection:
@@ -18,9 +16,7 @@ def calculateMinSignalDelay(wire1, wire2):
 def calculateManhattanDistance(wire1, wire2):
     wire1pointsList = convertWireStringToPointSet(wire1)
     wire2pointsList = convertWireStringToPointSet(wire2)
-    wire1points = set(wire1pointsList)
-    wire2points = set(wire2pointsList)
-    intersection = wire1points.intersection(wire2points)
+    intersection = findIntersection(wire1pointsList, wire2pointsList)
 
     minDistance = sys.maxsize
     for point in intersection:
@@ -29,6 +25,7 @@ def calculateManhattanDistance(wire1, wire2):
             minDistance = distance
 
     return minDistance
+
 
 def convertWireStringToPointSet(wire):
     pointArray = []
@@ -56,6 +53,11 @@ def convertWireStringToPointSet(wire):
                 pointArray.append(currentCoordinate)
 
     return pointArray
+
+def findIntersection(wire1, wire2):
+    wire1points = set(wire1)
+    wire2points = set(wire2)
+    return wire1points.intersection(wire2points)
 
 if __name__ == '__main__':
     wireStrings = []
