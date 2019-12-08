@@ -1,6 +1,6 @@
 import unittest
 import re
-from day4 import consecutiveDigitsRegex, exactlyTwoConsecutiveDigitsRegex, hasRegexMatch, validPassword
+from Day4.day4 import consecutiveDigitsRegex, exactlyTwoConsecutiveDigitsRegex, hasRegexMatch, validPassword
 
 class Day3Test(unittest.TestCase):
 

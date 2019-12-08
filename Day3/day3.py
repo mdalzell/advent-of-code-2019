@@ -58,17 +58,3 @@ def findIntersection(wire1, wire2):
     wire1points = set(wire1)
     wire2points = set(wire2)
     return wire1points.intersection(wire2points)
-
-if __name__ == '__main__':
-    wireStrings = []
-    with open("./input.txt") as input:
-        for line in input:
-            wireStrings.append(line)
-
-    if (len(sys.argv) > 1 and sys.argv[1] == "part2"):
-        result = calculateMinSignalDelay(wireStrings[0], wireStrings[1])
-        print(result)
-    else:
-        result = calculateManhattanDistance(wireStrings[0], wireStrings[1])
-        print(result)
-

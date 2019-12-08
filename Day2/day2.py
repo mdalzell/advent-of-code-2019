@@ -31,16 +31,3 @@ def findNounAndVerb(intList, desiredOutput):
                 return
             else:
                 intListCopy = intList.copy()
-
-
-if __name__ == '__main__':
-    intList = []
-    with open("./input.txt") as input:
-        for line in input:
-            intList = list(map(int, line.split(',')))
-
-    if (len(sys.argv) > 1 and sys.argv[1] == "part2"):
-        findNounAndVerb(intList, 19690720)
-    else:
-        result = intcode(intList, 12, 2)
-        print(result)

@@ -24,9 +24,3 @@ def countValidPasswordsInRange(begin, end, regex):
         if validPassword(x, regex):
             validCount += 1
     return validCount
-
-if __name__ == '__main__':
-    if (len(sys.argv) > 1 and sys.argv[1] == "part2"):
-        print(countValidPasswordsInRange(152085, 670283, exactlyTwoConsecutiveDigitsRegex))
-    else:
-        print(countValidPasswordsInRange(152085, 670283, consecutiveDigitsRegex))
