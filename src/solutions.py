@@ -1,8 +1,9 @@
 import os
 from .days.day1 import calculateFuel, calculateFuelWithAddedMass
-from .days.day2 import findNounAndVerb, intcode
+from .days.day2 import findNounAndVerb
 from .days.day3 import calculateManhattanDistance, calculateMinSignalDelay
 from .days.day4 import countValidPasswordsInRange, consecutiveDigitsRegex, exactlyTwoConsecutiveDigitsRegex
+from .shared.intcode import intcode
 
 dirPath = os.path.dirname(os.path.abspath(__file__))
 
@@ -26,7 +27,9 @@ def day2(isPart2):
     if (isPart2):
         findNounAndVerb(intList, 19690720)
     else:
-        result = intcode(intList, 12, 2)
+        intList[1] = 12
+        intList[2] = 2
+        result = intcode(intList)
         print(result)
 
 def day3(isPart2):
