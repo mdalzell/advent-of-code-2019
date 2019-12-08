@@ -1,6 +1,6 @@
-# 2019 Advent of Code
+# Advent of Code 2019
 
-This repository contains my solutions to the 2019 Advent of Code problems, implemented in Python3. It is also my first real attempt at working with Python for something beyond simple scripts, so in the spirit of the holidays, please be forgiving :santa:
+This repository contains my solutions to the Advent of Code 2019 problems, implemented in Python3. It is also my first real attempt at working with Python for something beyond simple scripts, so in the spirit of the holidays, please be forgiving :santa:
 
 ## Run Run Rudolph
 
