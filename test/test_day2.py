@@ -1,5 +1,5 @@
 import unittest
-from Day2.day2 import intcode 
+from src.days.day2 import intcode 
 
 class Day2Test(unittest.TestCase):
 

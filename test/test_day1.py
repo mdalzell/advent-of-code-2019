@@ -1,5 +1,5 @@
 import unittest
-from Day1.day1 import calculateFuel, calculateFuelWithAddedMass
+from src.days.day1 import calculateFuel, calculateFuelWithAddedMass
 
 class Day1Test(unittest.TestCase):
 
