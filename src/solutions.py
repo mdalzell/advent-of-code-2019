@@ -50,3 +50,14 @@ def day4(isPart2):
         print(countValidPasswordsInRange(152085, 670283, exactlyTwoConsecutiveDigitsRegex))
     else:
         print(countValidPasswordsInRange(152085, 670283, consecutiveDigitsRegex))
+
+def day5(isPart2):
+    intList = []
+    with open(dirPath + "/input/day5-input.txt") as input:
+        for line in input:
+            intList = list(map(int, line.split(',')))
+
+    if (isPart2):
+        print("Nope")
+    else:
+        intcode(intList)
