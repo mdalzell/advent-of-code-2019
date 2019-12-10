@@ -51,13 +51,11 @@ def day4(isPart2):
     else:
         print(countValidPasswordsInRange(152085, 670283, consecutiveDigitsRegex))
 
-def day5(isPart2):
+def day5():
     intList = []
     with open(dirPath + "/input/day5-input.txt") as input:
         for line in input:
             intList = list(map(int, line.split(',')))
 
-    if (isPart2):
-        print("Nope")
-    else:
-        intcode(intList)
+    print("When prompted, enter 1 to compute the part one solution, or 5 to compute the part two solution")
+    intcode(intList)

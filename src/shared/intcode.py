@@ -7,24 +7,52 @@ def intcode(intList):
         mode1 = int(opcodeString[opcodeLastIndex - 2]) if len(opcodeString) > 2 else 0
         mode2 = int(opcodeString[opcodeLastIndex - 3]) if len(opcodeString) > 3 else 0
 
+        step = 0
         if opcode == 1:
-            val1 = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
-            val2 = intList[pointer + 2] if mode2 == 1 else intList[intList[pointer + 2]]
-            intList[intList[pointer + 3]] = val1 + val2
+            param1 = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
+            param2 = intList[pointer + 2] if mode2 == 1 else intList[intList[pointer + 2]]
+            intList[intList[pointer + 3]] = param1 + param2
+            step += 4
         elif opcode == 2:
-            val1 = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
-            val2 = intList[pointer + 2] if mode2 == 1 else intList[intList[pointer + 2]]
-            intList[intList[pointer + 3]] = val1 * val2
+            param1 = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
+            param2 = intList[pointer + 2] if mode2 == 1 else intList[intList[pointer + 2]]
+            intList[intList[pointer + 3]] = param1 * param2
+            step += 4
         elif opcode == 3:
-            inputVal = input("Please input a single digit: ")
+            inputVal = input("Please input the systemID to TEST: ")
             intList[intList[pointer + 1]] = int(inputVal)
+            step += 2
         elif opcode == 4:
             printVal = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
             print("Opcode 4: " + str(printVal))
+            step += 2
+        elif opcode == 5:
+            param1 = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
+            param2 = intList[pointer + 2] if mode2 == 1 else intList[intList[pointer + 2]]
+            if param1 != 0: 
+                pointer = param2 
+            else:
+                step += 3
+        elif opcode == 6:
+            param1 = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
+            param2 = intList[pointer + 2] if mode2 == 1 else intList[intList[pointer + 2]]
+            if param1 == 0: 
+                pointer = param2
+            else:
+                step += 3
+        elif opcode == 7:
+            param1 = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
+            param2 = intList[pointer + 2] if mode2 == 1 else intList[intList[pointer + 2]]
+            intList[intList[pointer + 3]] = 1 if param1 < param2 else 0
+            step += 4
+        elif opcode == 8:
+            param1 = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
+            param2 = intList[pointer + 2] if mode2 == 1 else intList[intList[pointer + 2]]
+            intList[intList[pointer + 3]] = 1 if param1 == param2 else 0
+            step += 4
         elif opcode == 99:
             break
         
-        step = 4 if opcode == 1 or opcode == 2 else 2
         pointer += step
 
     return intList
