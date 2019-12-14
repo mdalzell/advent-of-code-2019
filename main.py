@@ -1,5 +1,5 @@
 import sys
-from src.solutions import day1, day2, day3, day4, day5
+from src.solutions import day1, day2, day3, day4, day5, day6
 
 if __name__ == '__main__':
     problemNumber = sys.argv[1]
@@ -21,3 +21,7 @@ if __name__ == '__main__':
         day4(True)
     elif (problemNumber == "5-1" or problemNumber == "5-2"):
         day5()
+    elif (problemNumber == "6-1"):
+        day6(False)
+    elif (problemNumber == "6-2"):
+        day6(True)

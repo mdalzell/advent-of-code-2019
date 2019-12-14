@@ -3,6 +3,7 @@ from .days.day1 import calculateFuel, calculateFuelWithAddedMass
 from .days.day2 import findNounAndVerb
 from .days.day3 import calculateManhattanDistance, calculateMinSignalDelay
 from .days.day4 import countValidPasswordsInRange, consecutiveDigitsRegex, exactlyTwoConsecutiveDigitsRegex
+from .days.day6 import calculateNumberOfOrbits, getToSanta
 from .shared.intcode import intcode
 
 dirPath = os.path.dirname(os.path.abspath(__file__))
@@ -59,3 +60,14 @@ def day5():
 
     print("When prompted, enter 1 to compute the part one solution, or 5 to compute the part two solution")
     intcode(intList)
+
+def day6(isPart2):
+    orbitMap = []
+    with open(dirPath + "/input/day6-input.txt") as input:
+        for line in input:
+            orbitMap.append(line.strip('\n'))
+
+    if (isPart2):
+        print(getToSanta(orbitMap))
+    else:
+        print(calculateNumberOfOrbits(orbitMap))
