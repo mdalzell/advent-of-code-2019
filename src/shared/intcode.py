@@ -1,5 +1,7 @@
-def intcode(intList):
+def intcode(intList, inputs = []):
     pointer = 0
+    currentInput = 0
+    outputList = []
     while pointer < len(intList) - 1:
         opcodeString = str(intList[pointer])
         opcodeLastIndex = len(opcodeString) - 1
@@ -19,12 +21,13 @@ def intcode(intList):
             intList[intList[pointer + 3]] = param1 * param2
             step += 4
         elif opcode == 3:
-            inputVal = input("Please input the systemID to TEST: ")
+            inputVal = inputs[currentInput] if currentInput < len(inputs) else input("Please input the systemID to TEST: ")
             intList[intList[pointer + 1]] = int(inputVal)
+            currentInput += 1
             step += 2
         elif opcode == 4:
             printVal = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
-            print("Opcode 4: " + str(printVal))
+            outputList.append(printVal)
             step += 2
         elif opcode == 5:
             param1 = intList[pointer + 1] if mode1 == 1 else intList[intList[pointer + 1]]
@@ -55,4 +58,4 @@ def intcode(intList):
         
         pointer += step
 
-    return intList
+    return outputList if len(outputList) is not 0 else intList

@@ -4,6 +4,7 @@ from .days.day2 import findNounAndVerb
 from .days.day3 import calculateManhattanDistance, calculateMinSignalDelay
 from .days.day4 import countValidPasswordsInRange, consecutiveDigitsRegex, exactlyTwoConsecutiveDigitsRegex
 from .days.day6 import calculateNumberOfOrbits, getToSanta
+from .days.day7 import findMaxSignal
 from .shared.intcode import intcode
 
 dirPath = os.path.dirname(os.path.abspath(__file__))
@@ -59,7 +60,7 @@ def day5():
             intList = list(map(int, line.split(',')))
 
     print("When prompted, enter 1 to compute the part one solution, or 5 to compute the part two solution")
-    intcode(intList)
+    print(intcode(intList))
 
 def day6(isPart2):
     orbitMap = []
@@ -71,3 +72,11 @@ def day6(isPart2):
         print(getToSanta(orbitMap))
     else:
         print(calculateNumberOfOrbits(orbitMap))
+
+def day7():
+    intList = []
+    with open(dirPath + "/input/day7-input.txt") as input:
+        for line in input:
+            intList = list(map(int, line.split(',')))
+
+    print(findMaxSignal(intList))
