@@ -19,8 +19,10 @@ if __name__ == '__main__':
         day4(False)
     elif (problemNumber == "4-2"):
         day4(True)
-    elif (problemNumber == "5-1" or problemNumber == "5-2"):
-        day5()
+    elif (problemNumber == "5-1"):
+        day5(False)
+    elif (problemNumber == "5-2"):
+        day5(True)
     elif (problemNumber == "6-1"):
         day6(False)
     elif (problemNumber == "6-2"):

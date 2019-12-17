@@ -1,4 +1,4 @@
-from ..shared.intcode import intcode
+from ..shared.intcode import IntCode
 
 def findMaxSignal(intList):
     maxSignal = 0
@@ -11,12 +11,22 @@ def findMaxSignal(intList):
                     for ampE in range(0, 5):
                         ampList = [ampA, ampB, ampC, ampD, ampE]
                         if len(set(ampList)) == len(ampList):
-                            resultA = intcode(intList.copy(), [ampA, 0])[0]
-                            resultB = intcode(intList.copy(), [ampB, resultA])[0]
-                            resultC = intcode(intList.copy(), [ampC, resultB])[0]
-                            resultD = intcode(intList.copy(), [ampD, resultC])[0]
-                            resultE = intcode(intList.copy(), [ampE, resultD])[0]
-                            if resultE > maxSignal:
-                                maxSignal = resultE
+                            intcodeA = IntCode(intList.copy(), [ampA, 0])
+                            intcodeA.run()
+
+                            intcodeB = IntCode(intList.copy(), [ampB, intcodeA.output[-1]])
+                            intcodeB.run()
+
+                            intcodeC = IntCode(intList.copy(), [ampC, intcodeB.output[-1]])
+                            intcodeC.run()
+
+                            intcodeD = IntCode(intList.copy(), [ampD, intcodeC.output[-1]])
+                            intcodeD.run()
+
+                            intcodeE = IntCode(intList.copy(), [ampE, intcodeD.output[-1]])
+                            intcodeE.run()
+
+                            if intcodeE.output[-1] > maxSignal:
+                                maxSignal = intcodeE.output[-1]
 
     return maxSignal
