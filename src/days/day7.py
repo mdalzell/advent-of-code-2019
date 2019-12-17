@@ -1,32 +1,42 @@
 from ..shared.intcode import IntCode
 
-def findMaxSignal(intList):
+def findMaxSignal(intList, begin, end):
     maxSignal = 0
     
     # Yo dawg I heard you like loops
-    for ampA in range(0, 5):
-        for ampB in range(0, 5):
-            for ampC in range(0, 5):
-                for ampD in range(0, 5):
-                    for ampE in range(0, 5):
+    for ampA in range(begin, end):
+        for ampB in range(begin, end):
+            for ampC in range(begin, end):
+                for ampD in range(begin, end):
+                    for ampE in range(begin, end):
                         ampList = [ampA, ampB, ampC, ampD, ampE]
                         if len(set(ampList)) == len(ampList):
-                            intcodeA = IntCode(intList.copy(), [ampA, 0])
-                            intcodeA.run()
+                            intCodeA = IntCode(intList.copy(), [ampA])
+                            intCodeB = IntCode(intList.copy(), [ampB])
+                            intCodeC = IntCode(intList.copy(), [ampC])
+                            intCodeD = IntCode(intList.copy(), [ampD])
+                            intCodeE = IntCode(intList.copy(), [ampE])
+                            beginSignal = 0
 
-                            intcodeB = IntCode(intList.copy(), [ampB, intcodeA.output[-1]])
-                            intcodeB.run()
+                            while not intCodeE.finished:
+                                intCodeA.inputs.append(beginSignal)
+                                intCodeA.run()
 
-                            intcodeC = IntCode(intList.copy(), [ampC, intcodeB.output[-1]])
-                            intcodeC.run()
+                                intCodeB.inputs.append(intCodeA.output[-1])
+                                intCodeB.run()
 
-                            intcodeD = IntCode(intList.copy(), [ampD, intcodeC.output[-1]])
-                            intcodeD.run()
+                                intCodeC.inputs.append(intCodeB.output[-1])
+                                intCodeC.run()
 
-                            intcodeE = IntCode(intList.copy(), [ampE, intcodeD.output[-1]])
-                            intcodeE.run()
+                                intCodeD.inputs.append(intCodeC.output[-1])
+                                intCodeD.run()
 
-                            if intcodeE.output[-1] > maxSignal:
-                                maxSignal = intcodeE.output[-1]
+                                intCodeE.inputs.append(intCodeD.output[-1])
+                                intCodeE.run()
+
+                                beginSignal = intCodeE.output[-1]
+
+                            if intCodeE.output[-1] > maxSignal:
+                                maxSignal = intCodeE.output[-1]
 
     return maxSignal

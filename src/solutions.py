@@ -77,10 +77,12 @@ def day6(isPart2):
     else:
         print(calculateNumberOfOrbits(orbitMap))
 
-def day7():
+def day7(isPart2):
     intList = []
     with open(dirPath + "/input/day7-input.txt") as input:
         for line in input:
             intList = list(map(int, line.split(',')))
 
-    print(findMaxSignal(intList))
+    begin = 5 if isPart2 else 0
+    end = 10 if isPart2 else 5
+    print(findMaxSignal(intList, begin, end))

@@ -63,6 +63,7 @@ class IntCode:
                 self.intList[self.intList[self.__pointer + 3]] = 1 if param1 == param2 else 0
                 step += 4
             elif opcode == 99:
+                self.finished = True
                 return
             
             self.__pointer += step
