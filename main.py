@@ -32,4 +32,6 @@ if __name__ == '__main__':
     elif (problemNumber == "7-2"):
         day7(True)
     elif (problemNumber == "8-1"):
-        day8()
+        day8(False)
+    elif (problemNumber == "8-2"):
+        day8(True)
