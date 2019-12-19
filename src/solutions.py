@@ -5,6 +5,7 @@ from .days.day3 import calculateManhattanDistance, calculateMinSignalDelay
 from .days.day4 import countValidPasswordsInRange, consecutiveDigitsRegex, exactlyTwoConsecutiveDigitsRegex
 from .days.day6 import calculateNumberOfOrbits, getToSanta
 from .days.day7 import findMaxSignal
+from .days.day8 import buildImage, getCountOfDigitInLayer, getLayerWithFewestOfDigit
 from .shared.intcode import IntCode
 
 dirPath = os.path.dirname(os.path.abspath(__file__))
@@ -86,3 +87,13 @@ def day7(isPart2):
     begin = 5 if isPart2 else 0
     end = 10 if isPart2 else 5
     print(findMaxSignal(intList, begin, end))
+
+def day8():
+    inputList = None
+    with open(dirPath + "/input/day8-input.txt") as input:
+        for line in input:
+            inputList = line
+
+    image = buildImage(inputList, 25, 6)
+    layer = getLayerWithFewestOfDigit(image, '0')
+    print(getCountOfDigitInLayer(layer, '1') * getCountOfDigitInLayer(layer, '2'))
