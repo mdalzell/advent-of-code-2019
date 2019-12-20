@@ -103,3 +103,15 @@ def day8(isPart2):
     else: 
         layer = getLayerWithFewestOfDigit(image, '0')
         print(getCountOfDigitInLayer(layer, '1') * getCountOfDigitInLayer(layer, '2'))
+
+def day9(isPart2):
+    intList = []
+    with open(dirPath + "/input/day9-input.txt") as input:
+        for line in input:
+            intList = list(map(int, line.split(',')))
+
+    inputList = [2] if isPart2 else [1]
+    intCode = IntCode(intList, inputList)
+    intCode.run()
+
+    print(intCode.output)
