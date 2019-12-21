@@ -12,7 +12,7 @@ dirPath = os.path.dirname(os.path.abspath(__file__))
 
 def day1(isPart2):
     fuelSum = 0
-    with open(dirPath + "/input/day1-input.txt") as input:
+    with open(dirPath + "/input/day1.txt") as input:
         for line in input:
             module = int(line)
             if (isPart2):
@@ -23,7 +23,7 @@ def day1(isPart2):
 
 def day2(isPart2):
     intList = []
-    with open(dirPath + "/input/day2-input.txt") as input:
+    with open(dirPath + "/input/day2.txt") as input:
         for line in input:
             intList = list(map(int, line.split(',')))
 
@@ -38,7 +38,7 @@ def day2(isPart2):
 
 def day3(isPart2):
     wireStrings = []
-    with open(dirPath + "/input/day3-input.txt") as input:
+    with open(dirPath + "/input/day3.txt") as input:
         for line in input:
             wireStrings.append(line)
 
@@ -57,7 +57,7 @@ def day4(isPart2):
 
 def day5(isPart2):
     intList = []
-    with open(dirPath + "/input/day5-input.txt") as input:
+    with open(dirPath + "/input/day5.txt") as input:
         for line in input:
             intList = list(map(int, line.split(',')))
 
@@ -69,7 +69,7 @@ def day5(isPart2):
 
 def day6(isPart2):
     orbitMap = []
-    with open(dirPath + "/input/day6-input.txt") as input:
+    with open(dirPath + "/input/day6.txt") as input:
         for line in input:
             orbitMap.append(line.strip('\n'))
 
@@ -80,7 +80,7 @@ def day6(isPart2):
 
 def day7(isPart2):
     intList = []
-    with open(dirPath + "/input/day7-input.txt") as input:
+    with open(dirPath + "/input/day7.txt") as input:
         for line in input:
             intList = list(map(int, line.split(',')))
 
@@ -90,7 +90,7 @@ def day7(isPart2):
 
 def day8(isPart2):
     inputList = None
-    with open(dirPath + "/input/day8-input.txt") as input:
+    with open(dirPath + "/input/day8.txt") as input:
         for line in input:
             inputList = line
 
@@ -106,7 +106,7 @@ def day8(isPart2):
 
 def day9(isPart2):
     intList = []
-    with open(dirPath + "/input/day9-input.txt") as input:
+    with open(dirPath + "/input/day9.txt") as input:
         for line in input:
             intList = list(map(int, line.split(',')))
 
