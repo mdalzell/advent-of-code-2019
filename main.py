@@ -1,41 +1,49 @@
 import sys
-from src.solutions import day1, day2, day3, day4, day5, day6, day7, day8, day9
+from src.solutions.day1 import Day1
+from src.solutions.day2 import Day2
+from src.solutions.day3 import Day3
+from src.solutions.day4 import Day4
+from src.solutions.day5 import Day5
+from src.solutions.day6 import Day6
+from src.solutions.day7 import Day7
+from src.solutions.day8 import Day8
+from src.solutions.day9 import Day9
 
 if __name__ == '__main__':
     problemNumber = sys.argv[1]
     if (problemNumber == "1-1"):
-        day1(False)
+        print(Day1().part1())
     elif (problemNumber == "1-2"):
-        day1(True)
+        print(Day1().part2())
     elif (problemNumber == "2-1"):
-        day2(False)
+        print(Day2().part1())
     elif (problemNumber == "2-2"):
-        day2(True)
+        print(Day2().part2())
     elif (problemNumber == "3-1"):
-        day3(False)
+        print(Day3().part1())
     elif (problemNumber == "3-2"):
-        day3(True)
+        print(Day3().part2())
     elif (problemNumber == "4-1"):
-        day4(False)
+        print(Day4().part1())
     elif (problemNumber == "4-2"):
-        day4(True)
+        print(Day4().part2())
     elif (problemNumber == "5-1"):
-        day5(False)
+        print(Day5().part1())
     elif (problemNumber == "5-2"):
-        day5(True)
+        print(Day5().part2())
     elif (problemNumber == "6-1"):
-        day6(False)
+        print(Day6().part1())
     elif (problemNumber == "6-2"):
-        day6(True)
+        print(Day6().part2())
     elif (problemNumber == "7-1"):
-        day7(False)
+        print(Day7().part1())
     elif (problemNumber == "7-2"):
-        day7(True)
+        print(Day7().part2())
     elif (problemNumber == "8-1"):
-        day8(False)
+        print(Day8().part1())
     elif (problemNumber == "8-2"):
-        day8(True)
+        print(Day8().part2())
     elif (problemNumber == "9-1"):
-        day9(False)
+        print(Day9().part1())
     elif (problemNumber == "9-2"):
-        day9(True)
+        print(Day9().part2())

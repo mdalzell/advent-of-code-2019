@@ -1,5 +1,5 @@
 import sys
-from ..shared.intcode import IntCode
+from src.shared.intcode import IntCode
 
 def findNounAndVerb(intList, desiredOutput):
     intListCopy = intList.copy()
@@ -12,8 +12,6 @@ def findNounAndVerb(intList, desiredOutput):
             intCode.run()
             result = intCode.intList
             if result[0] == desiredOutput:
-                print("Noun: " + str(noun))
-                print("Verb: " + str(verb))
-                return
+                return (noun, verb)
             else:
                 intListCopy = intList.copy()
