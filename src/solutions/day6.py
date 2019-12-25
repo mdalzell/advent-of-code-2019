@@ -1,4 +1,4 @@
-from src.days.day6 import calculateNumberOfOrbits, getToSanta
+from src.helpers.day6 import calculateNumberOfOrbits, getToSanta
 from src.shared.solution import Solution
 
 class Day6(Solution):

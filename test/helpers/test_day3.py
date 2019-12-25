@@ -1,5 +1,5 @@
 import unittest
-from src.days.day3 import calculateMinSignalDelay, calculateManhattanDistance
+from src.helpers.day3 import calculateMinSignalDelay, calculateManhattanDistance
 
 class Day3Test(unittest.TestCase):
 

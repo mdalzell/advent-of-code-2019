@@ -1,4 +1,4 @@
-from src.days.day3 import calculateManhattanDistance, calculateMinSignalDelay
+from src.helpers.day3 import calculateManhattanDistance, calculateMinSignalDelay
 from src.shared.solution import Solution
 
 class Day3(Solution):

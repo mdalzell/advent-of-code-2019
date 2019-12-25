@@ -1,4 +1,4 @@
-from src.days.day4 import countValidPasswordsInRange, consecutiveDigitsRegex, exactlyTwoConsecutiveDigitsRegex
+from src.helpers.day4 import countValidPasswordsInRange, consecutiveDigitsRegex, exactlyTwoConsecutiveDigitsRegex
 from src.shared.solution import Solution
 
 class Day4(Solution):

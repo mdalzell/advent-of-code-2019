@@ -1,5 +1,5 @@
 import unittest
-from src.days.day7 import findMaxSignal
+from src.helpers.day7 import findMaxSignal
 
 testInput1 = [3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0]
 

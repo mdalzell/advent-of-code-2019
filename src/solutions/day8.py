@@ -1,4 +1,4 @@
-from src.days.day8 import buildImage, combineLayers, getLayerWithFewestOfDigit, getCountOfDigitInLayer
+from src.helpers.day8 import buildImage, combineLayers, getLayerWithFewestOfDigit, getCountOfDigitInLayer
 from src.shared.solution import Solution
 
 class Day8(Solution):

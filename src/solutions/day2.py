@@ -1,4 +1,4 @@
-from src.days.day2 import findNounAndVerb
+from src.helpers.day2 import findNounAndVerb
 from src.shared.intcode import IntCode
 from src.shared.solution import Solution
 

@@ -1,4 +1,4 @@
-from src.days.day7 import findMaxSignal
+from src.helpers.day7 import findMaxSignal
 from src.shared.solution import Solution
 
 class Day7(Solution):

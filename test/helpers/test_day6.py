@@ -1,5 +1,5 @@
 import unittest
-from src.days.day6 import calculateNumberOfOrbits, getToSanta
+from src.helpers.day6 import calculateNumberOfOrbits, getToSanta
 
 testOrbit = ["COM)B", "B)C", "C)D", "D)E", "E)F", "B)G", "G)H", "D)I", "E)J", "J)K", "K)L"]
 

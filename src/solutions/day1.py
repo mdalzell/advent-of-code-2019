@@ -1,4 +1,4 @@
-from src.days.day1 import calculateFuel, calculateFuelWithAddedMass
+from src.helpers.day1 import calculateFuel, calculateFuelWithAddedMass
 from src.shared.solution import Solution
 
 class Day1(Solution):
