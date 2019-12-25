@@ -1,8 +1,10 @@
 import math
 import sys
 
+
 def calculateFuel(x):
     return math.floor(x / 3) - 2
+
 
 def calculateFuelWithAddedMass(x):
     fuel = calculateFuel(x)

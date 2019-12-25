@@ -1,5 +1,6 @@
 import sys
 
+
 def calculateMinSignalDelay(wire1, wire2):
     wire1pointsList = convertWireStringToPointSet(wire1)
     wire2pointsList = convertWireStringToPointSet(wire2)
@@ -7,11 +8,13 @@ def calculateMinSignalDelay(wire1, wire2):
 
     minDistance = sys.maxsize
     for point in intersection:
-        distance = wire1pointsList.index(point) + wire2pointsList.index(point) + 2
+        distance = wire1pointsList.index(
+            point) + wire2pointsList.index(point) + 2
         if distance < minDistance:
             minDistance = distance
 
     return minDistance
+
 
 def calculateManhattanDistance(wire1, wire2):
     wire1pointsList = convertWireStringToPointSet(wire1)
@@ -36,23 +39,30 @@ def convertWireStringToPointSet(wire):
         direction = wireCoordinate[0]
         magnitude = int(wireCoordinate[1:])
         if direction == 'R':
-            for x in range(currentCoordinate[0] + 1, currentCoordinate[0] + magnitude + 1):
+            for x in range(
+                    currentCoordinate[0] + 1,
+                    currentCoordinate[0] + magnitude + 1):
                 currentCoordinate = (x, currentCoordinate[1])
                 pointArray.append(currentCoordinate)
         elif direction == 'L':
-            for x in range(currentCoordinate[0] - 1, currentCoordinate[0] - magnitude - 1, -1):
+            for x in range(
+                    currentCoordinate[0] - 1, currentCoordinate[0] - magnitude - 1, -1):
                 currentCoordinate = (x, currentCoordinate[1])
                 pointArray.append(currentCoordinate)
         elif direction == 'U':
-            for y in range(currentCoordinate[1] + 1, currentCoordinate[1] + magnitude + 1):
+            for y in range(
+                    currentCoordinate[1] + 1,
+                    currentCoordinate[1] + magnitude + 1):
                 currentCoordinate = (currentCoordinate[0], y)
                 pointArray.append(currentCoordinate)
         elif direction == 'D':
-            for y in range(currentCoordinate[1] - 1, currentCoordinate[1] - magnitude - 1, -1):
+            for y in range(
+                    currentCoordinate[1] - 1, currentCoordinate[1] - magnitude - 1, -1):
                 currentCoordinate = (currentCoordinate[0], y)
                 pointArray.append(currentCoordinate)
 
     return pointArray
+
 
 def findIntersection(wire1, wire2):
     wire1points = set(wire1)

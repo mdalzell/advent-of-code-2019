@@ -24,6 +24,7 @@ from src.solutions.day23 import Day23
 from src.solutions.day24 import Day24
 from src.solutions.day25 import Day25
 
+
 class SolutionFactory:
     def __init__(self):
         self.__solutionMap = {

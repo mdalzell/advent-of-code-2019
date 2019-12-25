@@ -1,6 +1,7 @@
 import unittest
 from src.helpers.day1 import calculateFuel, calculateFuelWithAddedMass
 
+
 class Day1Test(unittest.TestCase):
 
     def test_calculateFuel_exampleCase1(self):
@@ -23,6 +24,7 @@ class Day1Test(unittest.TestCase):
 
     def test_calculateFuelWithAddedMass_exampleCase3(self):
         self.assertEqual(calculateFuelWithAddedMass(100756), 50346)
+
 
 if __name__ == '__main__':
     unittest.main()

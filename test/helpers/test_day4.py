@@ -2,6 +2,7 @@ import unittest
 import re
 from src.helpers.day4 import consecutiveDigitsRegex, exactlyTwoConsecutiveDigitsRegex, hasRegexMatch, validPassword
 
+
 class Day3Test(unittest.TestCase):
 
     def test_validPassword_exampleCase1(self):
@@ -14,13 +15,26 @@ class Day3Test(unittest.TestCase):
         self.assertEqual(validPassword(123789, consecutiveDigitsRegex), False)
 
     def test_containsExactlyTwoConsecutiveSameDigits_exampleCase1(self):
-        self.assertEqual(hasRegexMatch(112233, exactlyTwoConsecutiveDigitsRegex), True)
+        self.assertEqual(
+            hasRegexMatch(
+                112233,
+                exactlyTwoConsecutiveDigitsRegex),
+            True)
 
     def test_containsExactlyTwoConsecutiveSameDigits_exampleCase2(self):
-        self.assertEqual(hasRegexMatch(123444, exactlyTwoConsecutiveDigitsRegex), False)
+        self.assertEqual(
+            hasRegexMatch(
+                123444,
+                exactlyTwoConsecutiveDigitsRegex),
+            False)
 
     def test_containsExactlyTwoConsecutiveSameDigits_exampleCase3(self):
-        self.assertEqual(hasRegexMatch(111122, exactlyTwoConsecutiveDigitsRegex), True)
+        self.assertEqual(
+            hasRegexMatch(
+                111122,
+                exactlyTwoConsecutiveDigitsRegex),
+            True)
+
 
 if __name__ == '__main__':
     unittest.main()

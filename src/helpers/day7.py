@@ -1,8 +1,9 @@
 from ..shared.intcode import IntCode
 
+
 def findMaxSignal(intList, begin, end):
     maxSignal = 0
-    
+
     # Yo dawg I heard you like loops
     for ampA in range(begin, end):
         for ampB in range(begin, end):

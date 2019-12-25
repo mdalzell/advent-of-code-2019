@@ -1,6 +1,7 @@
 import sys
 from src.shared.intcode import IntCode
 
+
 def findNounAndVerb(intList, desiredOutput):
     intListCopy = intList.copy()
     for noun in range(0, 99):

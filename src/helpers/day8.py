@@ -1,9 +1,10 @@
 import sys
 
+
 def buildImage(input, width, height):
     layers = []
     inputPointer = 0
-    
+
     while inputPointer < len(input):
         layer = []
         for _ in range(0, height):
@@ -13,10 +14,11 @@ def buildImage(input, width, height):
                 inputPointer += 1
 
             layer.append(layerRow)
-        
+
         layers.append(layer)
 
     return layers
+
 
 def getLayerWithFewestOfDigit(image, digitChar):
     maxCount = sys.maxsize
@@ -29,12 +31,14 @@ def getLayerWithFewestOfDigit(image, digitChar):
 
     return bestLayer
 
+
 def getCountOfDigitInLayer(layer, digitChar):
     count = 0
     for row in layer:
         count += row.count(digitChar)
 
     return count
+
 
 def combineLayers(image, width, height):
     flatImage = []
