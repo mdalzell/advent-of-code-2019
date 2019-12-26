@@ -8,6 +8,7 @@ from src.solutions.day6 import Day6
 from src.solutions.day7 import Day7
 from src.solutions.day8 import Day8
 from src.solutions.day9 import Day9
+from src.solutions.day10 import Day10
 
 day8image = [['1',
               '0',
@@ -215,3 +216,9 @@ class SolutionsTest(unittest.TestCase):
 
     def test_day9_part2(self):
         self.assertEqual(Day9().part2(), [50120])
+
+    def test_day10_part1(self):
+        self.assertEqual(Day10().part1(), ((13, 17), 269))
+
+    def test_day10_part2(self):
+        self.assertEqual(Day10().part2(), 612)
