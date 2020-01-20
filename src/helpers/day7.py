@@ -1,4 +1,4 @@
-from ..shared.intcode import IntCode
+from src.shared.intcode import IntCode
 
 
 def findMaxSignal(intList, begin, end):
