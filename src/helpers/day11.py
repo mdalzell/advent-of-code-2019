@@ -1,11 +1,14 @@
+import matplotlib.pyplot as plot
 from src.shared.intcode import IntCode
 
 
-def countPanelsPainted(intList):
+def paintPanels(intList, initialColor):
     intcode = IntCode(intList)
     currentPosition = (0, 0)
     currentDirection = "U"
-    hullMap = {}
+    hullMap = {
+        (0, 0): initialColor
+    }
 
     while not intcode.finished:
         currentColor = hullMap.get(currentPosition, 0)
@@ -21,8 +24,25 @@ def countPanelsPainted(intList):
             currentDirection, turnDirection)
         currentPosition = calculateNewPosition(
             currentPosition, currentDirection)
+    return hullMap
 
-    return len(hullMap)
+
+def plotPoints(hullMap):
+    x, y = getHullPoints(hullMap)
+    plot.plot(x, y, 'ro')
+    plot.axis([0, 50, -10, 10])
+    plot.show()
+
+
+def getHullPoints(hullMap):
+    x = []
+    y = []
+    for key in hullMap:
+        if hullMap[key] is 1:
+            x.append(key[0])
+            y.append(key[1])
+
+    return x, y
 
 
 def calculateNewDirection(currentDirection, turnDirection):
