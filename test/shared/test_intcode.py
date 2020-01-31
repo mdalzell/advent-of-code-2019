@@ -1,5 +1,5 @@
 import unittest
-from src.shared.intcode import IntCode
+from aoc2019.shared.intcode import IntCode
 
 
 class IntcodeTest(unittest.TestCase):

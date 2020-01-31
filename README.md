@@ -7,7 +7,7 @@ This repository contains my solutions to the Advent of Code 2019 problems, imple
 To compute the solution to an Advent of Code problem, run the main script from the project's root directory:
 
 ```
-$ python3 main.py 1-1
+$ python3 -m aoc2019 1-1
 ```
 
 The argument `1-1` represents the day and the part(1 or 2) of the problem. For example, to get the answer for part two of day 4's problem, then the argument would be `4-2`.

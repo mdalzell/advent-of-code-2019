@@ -1,5 +1,5 @@
 import unittest
-from src.helpers.day10 import findBestAsteroid, destroyAsteroids
+from aoc2019.helpers.day10 import findBestAsteroid, destroyAsteroids
 
 example1 = [
     ".#..#",

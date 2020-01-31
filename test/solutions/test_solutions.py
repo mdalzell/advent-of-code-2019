@@ -1,15 +1,5 @@
 import unittest
-from src.solutions.day1 import Day1
-from src.solutions.day2 import Day2
-from src.solutions.day3 import Day3
-from src.solutions.day4 import Day4
-from src.solutions.day5 import Day5
-from src.solutions.day6 import Day6
-from src.solutions.day7 import Day7
-from src.solutions.day8 import Day8
-from src.solutions.day9 import Day9
-from src.solutions.day10 import Day10
-from src.solutions.day11 import Day11
+from aoc2019.solutions import Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11
 
 day8image = [['1',
               '0',
