@@ -1,11 +1,11 @@
 class IntCode:
-    def __init__(self, intList, inputs=[]):
+    def __init__(self, intList, inputs=None):
         extraMemory = [0] * 100000
         self.__pointer = 0
         self.__inputPointer = 0
         self.__relativeBase = 0
         self.finished = False
-        self.inputs = inputs
+        self.inputs = inputs or []
         self.intList = intList + extraMemory
         self.output = []
 

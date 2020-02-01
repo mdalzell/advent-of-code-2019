@@ -14,7 +14,7 @@ $ python3 -m aoc2019 1-1
 
 The argument `1-1` represents the day and the part(1 or 2) of the problem. For example, to get the answer for part two of day 4's problem, then the argument would be `4-2`.
 
-## Test Ye Merry Gentlemen
+## God Test Ye Merry Gentlemen
 
 To run the tests, simply run this command from the project's root directory:
 

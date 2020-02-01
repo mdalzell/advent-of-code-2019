@@ -1,5 +1,5 @@
-from aoc2019.shared.solution import Solution
-from aoc2019.helpers.day11 import paintPanels, plotPoints
+from aoc2019.shared import Solution, plot
+from aoc2019.helpers.day11 import paintPanels, getHullPoints
 
 
 class Day11(Solution):
@@ -10,8 +10,9 @@ class Day11(Solution):
     def part2(self):
         program = self.__getProgram()
         hullMap = paintPanels(program, 1)
-        plotPoints(hullMap)
-        return hullMap
+        x, y = getHullPoints(hullMap)
+        plot(x, y)
+        return x, y
 
     def __getProgram(self):
         program = []
