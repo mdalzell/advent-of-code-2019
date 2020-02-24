@@ -13,7 +13,7 @@ class Day6(Solution):
 
     def __getOrbitMap(self):
         orbitMap = []
-        with open(self.dirPath + "/../input/day06.txt") as input:
+        with open(self._dirPath + "/../input/day06.txt") as input:
             for line in input:
                 orbitMap.append(line.strip('\n'))
         return orbitMap

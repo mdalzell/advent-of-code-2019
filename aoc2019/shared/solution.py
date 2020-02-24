@@ -4,7 +4,7 @@ import os
 
 class Solution:
     def __init__(self):
-        self.dirPath = os.path.dirname(os.path.abspath(__file__))
+        self._dirPath = os.path.dirname(os.path.abspath(__file__))
 
     @abc.abstractmethod
     def part1(self):

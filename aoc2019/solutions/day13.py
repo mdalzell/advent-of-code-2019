@@ -1,5 +1,5 @@
 from aoc2019.shared.solution import Solution
-from aoc2019.helpers.day13 import countBlockTiles
+from aoc2019.helpers.day13 import countBlockTiles, getScore
 
 
 class Day13(Solution):
@@ -8,11 +8,13 @@ class Day13(Solution):
         return countBlockTiles(program)
 
     def part2(self):
-        pass
+        program = self.__getProgram()
+        program[0] = 2
+        return getScore(program)
 
     def __getProgram(self):
         program = []
-        with open(self.dirPath + "/../input/day13.txt") as input:
+        with open(self._dirPath + "/../input/day13.txt") as input:
             for line in input:
                 program = list(map(int, line.split(',')))
         return program

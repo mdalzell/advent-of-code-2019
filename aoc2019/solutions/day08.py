@@ -15,7 +15,7 @@ class Day8(Solution):
 
     def __getImage(self):
         inputList = None
-        with open(self.dirPath + "/../input/day08.txt") as input:
+        with open(self._dirPath + "/../input/day08.txt") as input:
             for line in input:
                 inputList = line
 

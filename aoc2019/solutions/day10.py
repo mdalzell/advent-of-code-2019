@@ -14,7 +14,7 @@ class Day10(Solution):
 
     def __getAsteroidGrid(self):
         asteroidGrid = []
-        with open(self.dirPath + "/../input/day10.txt") as input:
+        with open(self._dirPath + "/../input/day10.txt") as input:
             for line in input:
                 asteroidGrid.append(line.strip('\n'))
         return asteroidGrid

@@ -5,7 +5,7 @@ from aoc2019.shared.solution import Solution
 class Day1(Solution):
     def __init__(self):
         Solution.__init__(self)
-        self.inputPath = self.dirPath + "/../input/day01.txt"
+        self.inputPath = self._dirPath + "/../input/day01.txt"
 
     def part1(self):
         fuelSum = 0

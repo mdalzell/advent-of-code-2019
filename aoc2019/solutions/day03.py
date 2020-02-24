@@ -13,7 +13,7 @@ class Day3(Solution):
 
     def __getWires(self):
         wires = []
-        with open(self.dirPath + "/../input/day03.txt") as input:
+        with open(self._dirPath + "/../input/day03.txt") as input:
             for line in input:
                 wires.append(line)
         return wires

@@ -17,7 +17,7 @@ class Day9(Solution):
 
     def __getProgram(self):
         program = []
-        with open(self.dirPath + "/../input/day09.txt") as input:
+        with open(self._dirPath + "/../input/day09.txt") as input:
             for line in input:
                 program = list(map(int, line.split(',')))
         return program

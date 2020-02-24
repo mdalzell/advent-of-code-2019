@@ -12,5 +12,5 @@ class Day7(Solution):
         return findMaxSignal(intList, 5, 10)
 
     def __getProgram(self):
-        with open(self.dirPath + "/../input/day07.txt") as input:
+        with open(self._dirPath + "/../input/day07.txt") as input:
             return list(map(int, input.readline().split(',')))

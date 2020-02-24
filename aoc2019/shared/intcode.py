@@ -18,6 +18,9 @@ class IntCode:
         else:
             return self.intList[arg]
 
+    def clearOutput(self):
+        self.output = []
+
     def run(self):
         while not self.finished:
             opcodeString = str(self.intList[self.__pointer])
