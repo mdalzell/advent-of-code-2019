@@ -1,3 +1,6 @@
+import math
+
+
 class Formula:
     def __init__(self, count, element, ingredients):
         self.count = count
@@ -26,8 +29,8 @@ def parseInputToFormulaDictionary(input):
     return formulaDictionary
 
 
-def calculateOreRequiredForFuel(formulaDictionary):
-    currentIngredients = {'FUEL': 1, 'ORE': 0}
+def calculateOreRequiredForFuel(formulaDictionary, initialFuel=1):
+    currentIngredients = {'FUEL': initialFuel, 'ORE': 0}
     continueRefining = True
 
     while continueRefining:
@@ -41,18 +44,43 @@ def calculateOreRequiredForFuel(formulaDictionary):
     return currentIngredients['ORE']
 
 
+def calculateMaxFuelForOre(formulaDictionary, oreCount=1000000000000):
+    oreForOneFuel = calculateOreRequiredForFuel(formulaDictionary)
+    minFuel = math.floor(oreCount / oreForOneFuel)
+    # Just going to assume the leftovers will not allow more than 2x the min fuel that can be created
+    maxFuel = minFuel * 2
+    return __binarySearchForMaxFuel(formulaDictionary, minFuel, maxFuel, oreCount)
+
+
 def __refineIngredients(currentIngredients, formula):
-    while currentIngredients[formula.element] > 0:
-        for ingredient in formula.ingredients:
-            __addIngredient(currentIngredients, ingredient)
+    multiplier = math.ceil(currentIngredients[formula.element] / formula.count)
 
-        currentIngredients[formula.element] = currentIngredients[formula.element] - formula.count
+    for ingredient in formula.ingredients:
+        __addIngredient(currentIngredients, ingredient, multiplier)
+
+    currentIngredients[formula.element] = currentIngredients[formula.element] - \
+        formula.count * multiplier
 
 
-def __addIngredient(currentIngredients, ingredient):
+def __addIngredient(currentIngredients, ingredient, multiplier):
     ingredientElement = ingredient[1]
     ingredientCount = ingredient[0]
     if ingredientElement in currentIngredients:
-        currentIngredients[ingredientElement] = currentIngredients[ingredientElement] + ingredientCount
+        currentIngredients[ingredientElement] = currentIngredients[ingredientElement] + \
+            ingredientCount * multiplier
     else:
-        currentIngredients[ingredientElement] = ingredientCount
+        currentIngredients[ingredientElement] = ingredientCount * multiplier
+
+
+def __binarySearchForMaxFuel(formulaDictionary, minFuel, maxFuel, oreCount):
+    if minFuel == (maxFuel - 1):
+        # Take the lesser of the two binary search results
+        return minFuel
+
+    averageFuel = math.floor((minFuel + maxFuel) / 2)
+    oreRequired = calculateOreRequiredForFuel(formulaDictionary, averageFuel)
+
+    if oreRequired > oreCount:
+        return __binarySearchForMaxFuel(formulaDictionary, minFuel, averageFuel, oreCount)
+    elif oreRequired < oreCount:
+        return __binarySearchForMaxFuel(formulaDictionary, averageFuel, maxFuel, oreCount)

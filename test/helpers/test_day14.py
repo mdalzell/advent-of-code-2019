@@ -1,6 +1,6 @@
 import os
 import unittest
-from aoc2019.helpers.day14 import calculateOreRequiredForFuel, Formula, parseInputToFormulaDictionary
+from aoc2019.helpers.day14 import calculateMaxFuelForOre, calculateOreRequiredForFuel, Formula, parseInputToFormulaDictionary
 
 
 class Day14Test(unittest.TestCase):
@@ -18,11 +18,23 @@ class Day14Test(unittest.TestCase):
             result = parseInputToFormulaDictionary(input)
             self.assertEqual(result['A'].count, testDictionary['A'].count)
 
-    def test_calculateOreRequiredForFuel(self):
+    def test_calculateOreRequiredForFuel_1(self):
         with open(os.path.dirname(__file__) + "/../input/day14_1.txt") as input:
             formulaDictionary = parseInputToFormulaDictionary(input)
             oreCount = calculateOreRequiredForFuel(formulaDictionary)
             self.assertEqual(oreCount, 31)
+
+    def test_calculateOreRequiredForFuel_2(self):
+        with open(os.path.dirname(__file__) + "/../input/day14_2.txt") as input:
+            formulaDictionary = parseInputToFormulaDictionary(input)
+            oreCount = calculateOreRequiredForFuel(formulaDictionary)
+            self.assertEqual(oreCount, 13312)
+
+    def test_calculateMaxFuelForOre(self):
+        with open(os.path.dirname(__file__) + "/../input/day14_2.txt") as input:
+            formulaDictionary = parseInputToFormulaDictionary(input)
+            maxFuel = calculateMaxFuelForOre(formulaDictionary)
+            self.assertEqual(maxFuel, 82892753)
 
 
 if __name__ == '__main__':
