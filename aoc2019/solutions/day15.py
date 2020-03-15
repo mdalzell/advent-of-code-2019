@@ -1,4 +1,4 @@
-from aoc2019.helpers.day15 import RepairDroid
+from aoc2019.helpers.day15 import RepairDroid, calculateMinutesToFullOxygen
 from aoc2019.shared.solution import Solution
 
 
@@ -10,7 +10,12 @@ class Day15(Solution):
         return droid.minStepsToOxygenSystem
 
     def part2(self):
-        pass
+        program = self.__getProgram()
+        droid = RepairDroid(program)
+        droid.findOxygenSystem()
+        shipMap = droid.visitedPositions
+        oxygenSystemLocation = droid.oxygenSystemLocation
+        return calculateMinutesToFullOxygen(oxygenSystemLocation, shipMap)
 
     def __getProgram(self):
         program = []

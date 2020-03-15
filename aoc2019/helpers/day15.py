@@ -15,13 +15,42 @@ class MoveResult(Enum):
     OXYGEN_SYSTEM = 2
 
 
+def calculateMinutesToFullOxygen(oxygenSystemLocation, shipMap):
+    currentMinute = 0
+    oxygenLocations = set([oxygenSystemLocation])
+    visitedLocations = set()
+
+    while len(oxygenLocations) != len(shipMap):
+        currentOxygenLocations = oxygenLocations.copy()
+        for location in currentOxygenLocations:
+            if location not in visitedLocations:
+                northLocation = (location[0], location[1] + 1)
+                southLocation = (location[0], location[1] - 1)
+                westLocation = (location[0] - 1, location[1])
+                eastLocation = (location[0] + 1, location[1])
+
+                newLocations = [northLocation, southLocation,
+                                westLocation, eastLocation]
+
+                for newLocation in newLocations:
+                    if newLocation in shipMap and newLocation not in oxygenLocations:
+                        oxygenLocations.add(newLocation)
+
+                visitedLocations.add(location)
+
+        currentMinute = currentMinute + 1
+
+    return currentMinute
+
+
 class RepairDroid:
     def __init__(self, program):
         self.minStepsToOxygenSystem = None
+        self.oxygenSystemLocation = None
+        self.visitedPositions = set()
         self.__computer = IntCode(program)
         self.__currentPosition = (0, 0)
         self.__totalSteps = 0
-        self.__visitedPositions = set()
 
     def findOxygenSystem(self):
         self.__searchInDirection(Direction.NORTH)
@@ -56,14 +85,16 @@ class RepairDroid:
             return
 
         # Position has not been visited, increment steps.  If a backtrack, decrement and return
-        if self.__currentPosition not in self.__visitedPositions:
+        if self.__currentPosition not in self.visitedPositions:
             self.__totalSteps = self.__totalSteps + 1
-            self.__visitedPositions.add(self.__currentPosition)
+            self.visitedPositions.add(self.__currentPosition)
         else:
             self.__totalSteps = self.__totalSteps - 1
             return
 
         if output is MoveResult.OXYGEN_SYSTEM.value:
+            if self.oxygenSystemLocation is None:
+                self.oxygenSystemLocation = self.__currentPosition
             if self.minStepsToOxygenSystem is None or self.__totalSteps < self.minStepsToOxygenSystem:
                 self.minStepsToOxygenSystem = self.__totalSteps
 
