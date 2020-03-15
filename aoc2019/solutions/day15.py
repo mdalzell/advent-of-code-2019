@@ -5,8 +5,8 @@ from aoc2019.shared.solution import Solution
 class Day15(Solution):
     def part1(self):
         program = self.__getProgram()
-        droid = RepairDroid()
-        droid.searchInAllDirections(program)
+        droid = RepairDroid(program)
+        droid.findOxygenSystem()
         return droid.minStepsToOxygenSystem
 
     def part2(self):
