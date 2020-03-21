@@ -1,9 +1,15 @@
 from aoc2019.shared.solution import Solution
+from aoc2019.helpers.day16 import improveSignalQuality
 
 
 class Day16(Solution):
     def part1(self):
-        pass
+        signal = self.__getSignal()
+        return improveSignalQuality(signal, 100, 8)
 
     def part2(self):
         pass
+
+    def __getSignal(self):
+        with open(self._dirPath + "/../input/day16.txt") as input:
+            return input.readline()
