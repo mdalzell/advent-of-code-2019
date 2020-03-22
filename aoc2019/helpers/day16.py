@@ -1,38 +1,39 @@
+from numpy import dot
 
 
-def improveSignalQuality(signal, phases, charactersNeeded):
-    result = signal
+def improveSignalQuality(signal, phases, charactersNeeded, startingPosition=0):
+    result = [int(x) for x in str(signal)]
 
     for _ in range(phases):
         result = __runPhase(result)
 
-    return result[0:8]
+    resultString = "".join(map(str, result))
+    return resultString[startingPosition:charactersNeeded]
 
 
 def __runPhase(signal):
-    result = ""
+    result = []
 
     for i in range(0, len(signal)):
-        value = 0
-        signalIndex = 0
-        pattern = [0, 1, 0, -1]
-        hasSkipped = False
-
-        while signalIndex < len(signal):
-            currentModifier = pattern.pop(0)
-            for _ in range(i + 1):
-                if signalIndex >= len(signal):
-                    break
-
-                if not hasSkipped:
-                    hasSkipped = True
-                    continue
-
-                value += int(signal[signalIndex]) * currentModifier
-                signalIndex += 1
-
-            pattern.append(currentModifier)
-
-        result += str(value)[-1]
+        pattern = __getPattern(len(signal), i + 1)
+        value = dot(signal, pattern)
+        lastDigit = abs(value) % 10
+        result.append(lastDigit)
 
     return result
+
+
+def __getPattern(length, iteration):
+    zeros = [0] * iteration
+    positives = [1] * iteration
+    negatives = [-1] * iteration
+    pattern = zeros + positives + zeros + negatives
+
+    while len(pattern) < length + 1:
+        pattern = pattern + pattern
+
+    # Remove first element per instructions
+    pattern.pop(0)
+
+    # Trim to be same length as signal
+    return pattern[0:length]
