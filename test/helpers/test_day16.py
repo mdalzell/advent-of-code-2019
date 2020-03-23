@@ -1,6 +1,6 @@
 import os
 import unittest
-from aoc2019.helpers.day16 import improveSignalQuality
+from aoc2019.helpers.day16 import improveSignalQuality, decodeRealSignal
 
 
 class Day16Test(unittest.TestCase):
@@ -18,11 +18,10 @@ class Day16Test(unittest.TestCase):
             "80871224585914546619083218645595", 100, 8)
         self.assertEqual(result, "24176176")
 
-    @unittest.skip("Not performant enough for this yet :(")
-    def test_improveSignalQuality_case4(self):
+    def test_decodeRealSignal(self):
         signal = "03036732577212944063491565474664" * 10000
-        startingPosition = signal[0:7]
-        result = improveSignalQuality(
+        startingPosition = int(signal[0:7])
+        result = decodeRealSignal(
             signal, 100, 8, startingPosition)
         self.assertEqual(result, "84462026")
 
