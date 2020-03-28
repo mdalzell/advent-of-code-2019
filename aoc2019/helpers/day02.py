@@ -11,7 +11,7 @@ def findNounAndVerb(intList, desiredOutput):
 
             intCode = IntCode(intListCopy)
             intCode.run()
-            result = intCode.intList
+            result = intCode.program
             if result[0] == desiredOutput:
                 return (noun, verb)
             else:

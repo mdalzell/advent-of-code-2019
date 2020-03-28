@@ -7,22 +7,22 @@ class IntcodeTest(unittest.TestCase):
     def test_intcode_exampleCase1(self):
         intCode = IntCode([1, 0, 0, 0, 99])
         intCode.run()
-        self.assertEqual(intCode.intList[0], 2)
+        self.assertEqual(intCode.program[0], 2)
 
     def test_intcode_exampleCase2(self):
         intCode = IntCode([2, 3, 0, 3, 99])
         intCode.run()
-        self.assertEqual(intCode.intList[3], 6)
+        self.assertEqual(intCode.program[3], 6)
 
     def test_intcode_exampleCase3(self):
         intCode = IntCode([2, 4, 4, 5, 99, 0])
         intCode.run()
-        self.assertEqual(intCode.intList[5], 9801)
+        self.assertEqual(intCode.program[5], 9801)
 
     def test_intcode_exampleCase4(self):
         intCode = IntCode([1, 1, 1, 4, 99, 5, 6, 0, 99])
         intCode.run()
-        self.assertEqual(intCode.intList[0], 30)
+        self.assertEqual(intCode.program[0], 30)
 
     def test_intcode_day9_exampleCase1(self):
         intList = [109, 1, 204, -1, 1001, 100, 1,
