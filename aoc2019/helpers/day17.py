@@ -2,12 +2,6 @@ from enum import Enum
 from aoc2019.shared.intcode import IntCode
 
 
-class ASCII(Enum):
-    DOT = 46
-    HASHTAG = 35
-    NEWLINE = 10
-
-
 def sumAlignmentParametersOfIntersections(scaffoldingMap):
     intersections = set()
     width = len(scaffoldingMap[0])
@@ -31,22 +25,43 @@ def sumAlignmentParametersOfIntersections(scaffoldingMap):
 class VacuumRobot:
     def __init__(self, program):
         self.__computer = IntCode(program)
-        self.map = self.__buildMap()
 
-    def __buildMap(self):
+    def buildMap(self):
         scaffoldingMap = [""]
         currentLine = 0
         self.__computer.run()
 
         for result in self.__computer.output:
-            if result is ASCII.DOT.value:
-                scaffoldingMap[currentLine] += "."
-            elif result is ASCII.HASHTAG.value:
-                scaffoldingMap[currentLine] += "#"
-            elif result is ASCII.NEWLINE.value:
+            if result is 10:
                 scaffoldingMap.append("")
                 currentLine += 1
+            else:
+                scaffoldingMap[currentLine] += chr(result)
 
         scaffoldingMap = list(filter(None, scaffoldingMap))
 
         return scaffoldingMap
+
+    def __convertCommandToAscii(self, inputCommand):
+        asciiInput = ""
+        for character in inputCommand:
+            asciiInput += str(ord(character))
+
+        asciiInput += "10"
+        return int(asciiInput)
+
+    def __convertCommandsToAscii(self, inputCommands):
+        asciiInput = []
+        for command in inputCommands:
+            for character in command:
+                asciiInput.append(ord(character))
+
+            asciiInput.append(10)
+        return asciiInput
+
+    def collectDust(self, inputCommands):
+        inputCommand = self.__convertCommandsToAscii(inputCommands)
+        self.__computer.inputs = inputCommand
+        self.__computer.run()
+
+        return self.__computer.output[-1]
