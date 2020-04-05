@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plot
 from aoc2019.shared.intcode import IntCode
 
 
@@ -25,14 +24,6 @@ def paintPanels(intList, initialColor):
         currentPosition = calculateNewPosition(
             currentPosition, currentDirection)
     return hullMap
-
-
-def plotPoints(hullMap):
-    x, y = getHullPoints(hullMap)
-    plot.plot(x, y, 'ro')
-    plot.axis([0, 50, -10, 10])
-    plot.show()
-
 
 def getHullPoints(hullMap):
     x = []

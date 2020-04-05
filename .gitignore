@@ -1,3 +1,7 @@
 **/__pycache__/
+*.py[cod]
 
 .vscode/**/*
+
+# Any png plots that are generated
+**/*.png
