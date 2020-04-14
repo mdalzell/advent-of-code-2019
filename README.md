@@ -8,7 +8,7 @@ For more information Advent of Code, check out the [site](https://adventofcode.c
 
 To compute the solution to an Advent of Code problem, run the main script from the project's root directory:
 
-```
+```bash
 $ python3 -m aoc2019 1-1
 ```
 
@@ -18,6 +18,6 @@ The argument `1-1` represents the day and the part(1 or 2) of the problem. For e
 
 To run the tests, simply run this command from the project's root directory:
 
-```
+```bash
 $ python3 -m unittest
 ```
