@@ -1,5 +1,5 @@
-from unittest import mock, TestCase
-from aoc2019.solutions import Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11, Day12, Day13, Day14, Day15, Day16, Day17
+from unittest import mock, TestCase, skip
+from aoc2019.solutions import Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11, Day12, Day13, Day14, Day15, Day16, Day17, Day18
 
 day8image = [['1', '0', '0', '0', '0', '0', '0', '1', '1', '0', '1', '1', '1', '1', '0', '0', '1', '1', '0', '0', '1', '0', '0', '1', '0'],
              ['1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0',
@@ -123,3 +123,7 @@ class SolutionsTest(TestCase):
 
     def test_day17_part2(self):
         self.assertEqual(Day17().part2(), 1113108)
+
+    @skip("Too slow to test :(")
+    def test_day18_part1(self):
+        self.assertEqual(Day18().part1(), 6286)

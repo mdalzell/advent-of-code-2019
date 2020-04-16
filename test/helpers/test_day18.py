@@ -32,7 +32,7 @@ class Day18Test(unittest.TestCase):
         result = minimumStepsToCollectAllKeys(scanMap)
         self.assertEqual(result, 132)
 
-    '''
+    
     def test_minimumStepsToCollectAllKeys_case4(self):
         scanMap = [
             '#################',
@@ -48,7 +48,7 @@ class Day18Test(unittest.TestCase):
 
         result = minimumStepsToCollectAllKeys(scanMap)
         self.assertEqual(result, 136)
-    '''
+    
 
 if __name__ == '__main__':
     unittest.main()
