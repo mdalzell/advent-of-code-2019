@@ -18,6 +18,37 @@ class SearchNode:
         + ', priority: ' + str(self.priority) 
         + ', keys: ' + str(self.keys))
 
+def correctMapData(scanMap):
+    for i in range(0, len(scanMap)):
+        if "@" in scanMap[i]:
+            index = scanMap[i].index("@")
+
+            previousRow = list(scanMap[i - 1])
+            previousRow[index - 1] = "@"
+            previousRow[index] = "#"
+            previousRow[index + 1] = "@"
+            scanMap[i - 1] = "".join(previousRow)
+
+            currentRow = list(scanMap[i])
+            currentRow[index - 1] = "#"
+            currentRow[index] = "#"
+            currentRow[index + 1] = "#"
+            scanMap[i] = "".join(currentRow)
+
+            nextRow = list(scanMap[i + 1])
+            nextRow[index - 1] = "@"
+            nextRow[index] = "#"
+            nextRow[index + 1] = "@"
+            scanMap[i + 1] = "".join(nextRow)
+
+            break
+        else: 
+            continue
+
+    for line in scanMap:
+        print(line)
+    return scanMap
+
 def minimumStepsToCollectAllKeys(scanMap):
     startingPositions, keyLocations = _getStartingPositionsAndKeyLocations(scanMap)
     searchResult = _search(scanMap, startingPositions, keyLocations)
