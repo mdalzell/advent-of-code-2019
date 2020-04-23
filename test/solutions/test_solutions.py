@@ -127,3 +127,7 @@ class SolutionsTest(TestCase):
     @skip("Too slow to test :(")
     def test_day18_part1(self):
         self.assertEqual(Day18().part1(), 6286)
+
+    @skip("Too slow to test :(")
+    def test_day18_part1(self):
+        self.assertEqual(Day18().part2(), 2140)

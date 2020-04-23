@@ -1,8 +1,8 @@
 import unittest
+from unittest import skip
 from aoc2019.helpers.day18 import minimumStepsToCollectAllKeys
 
 class Day18Test(unittest.TestCase):
-
     def test_minimumStepsToCollectAllKeys_case1(self):
         scanMap = ['#########', '#b.A.@.a#', '#########']
         result = minimumStepsToCollectAllKeys(scanMap)
@@ -32,7 +32,6 @@ class Day18Test(unittest.TestCase):
         result = minimumStepsToCollectAllKeys(scanMap)
         self.assertEqual(result, 132)
 
-    
     def test_minimumStepsToCollectAllKeys_case4(self):
         scanMap = [
             '#################',
@@ -49,6 +48,34 @@ class Day18Test(unittest.TestCase):
         result = minimumStepsToCollectAllKeys(scanMap)
         self.assertEqual(result, 136)
     
+    def test_minimumStepsToCollectAllKeys_case5(self):
+        scanMap = [
+            '#######',
+            '#a.#Cd#',
+            '##@#@##',
+            '#######',
+            '##@#@##',
+            '#cB#.b#',
+            '#######'
+        ]
+
+        result = minimumStepsToCollectAllKeys(scanMap)
+        self.assertEqual(result, 8)
+
+    def test_minimumStepsToCollectAllKeys_case6(self):
+        scanMap = [
+            '###############',
+            '#d.ABC.#.....a#',
+            '######@#@######',
+            '###############',
+            '######@#@######',
+            '#b.....#.....c#',
+            '###############'
+        ]
+
+        result = minimumStepsToCollectAllKeys(scanMap)
+        self.assertEqual(result, 24)
+
 
 if __name__ == '__main__':
     unittest.main()

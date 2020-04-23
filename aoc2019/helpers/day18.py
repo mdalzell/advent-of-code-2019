@@ -6,8 +6,7 @@ class SearchNode:
         self.positions = positions
         self.moves = moves
         self.keys = keys
-        self.maxDistanceToKey = _maxDistanceToKey(positions, keys, keyDictionary)
-        self.priority = moves + self.maxDistanceToKey
+        self.priority = moves 
 
     def __lt__(self, other):
         return self.priority < other.priority
@@ -45,8 +44,6 @@ def correctMapData(scanMap):
         else: 
             continue
 
-    for line in scanMap:
-        print(line)
     return scanMap
 
 def minimumStepsToCollectAllKeys(scanMap):
@@ -64,17 +61,18 @@ def _search(scanMap, startingNode, keyLocations):
 
     while not openQueue.empty():
         currentNode = openQueue.get()
+        dictionaryKey = _buildKey(currentNode)
+
+        if len(currentNode.keys) is len(keyLocations):
+            return currentNode
+
+        if dictionaryKey in visitedNodes.keys() and currentNode.priority >= visitedNodes[dictionaryKey]:
+            openQueue.task_done()
+            continue
+
         successors = _generateSuccessors(currentNode, scanMap, keyLocations)
 
         for successor in successors:
-            if len(successor.keys) is len(keyLocations):
-                return successor
-
-            successorDictionaryKey = _buildKey(successor)
-
-            if successorDictionaryKey in visitedNodes.keys() and successor.priority >= visitedNodes[successorDictionaryKey]:
-                continue
-
             openQueue.put(successor)
         
         dictionaryKey = _buildKey(currentNode)
@@ -85,7 +83,7 @@ def _search(scanMap, startingNode, keyLocations):
 
 def _getStartingPositionsAndKeyLocations(scanMap):
     keyLocations = {}
-    startingPostions = []
+    startingPositions = []
 
     for i in range(0, len(scanMap)):
         for j in range(0, len(scanMap[i])):
@@ -93,60 +91,50 @@ def _getStartingPositionsAndKeyLocations(scanMap):
             if character.islower():
                 keyLocations[character] = (j, i)
             elif character is "@":
-                startingPostions.append((j, i))
+                startingPositions.append((j, i))
 
-    startingNodes = SearchNode(startingPostions, 0, '', keyLocations)
+    startingNodes = SearchNode(startingPositions, 0, '', keyLocations)
     return startingNodes, keyLocations
 
 def _generateSuccessors(currentNode, scanMap, keyLocations):
     successors = []
 
     for i in range(0, len(currentNode.positions)):
-        successorPositions = [
-            (currentNode.positions[i][0] + 1, currentNode.positions[i][1]),
-            (currentNode.positions[i][0] - 1, currentNode.positions[i][1]),
-            (currentNode.positions[i][0], currentNode.positions[i][1] + 1),
-            (currentNode.positions[i][0], currentNode.positions[i][1] - 1)
-        ]
+        queue = [(currentNode.positions[i], currentNode.moves)]
+        visitedPositions = set()
 
-        for position in successorPositions:
-            character = scanMap[position[1]][position[0]]
-            
-            if character is '#':
-                continue
-            elif character.isupper():
-                if character.lower() in currentNode.keys:
+        while len(queue) > 0:
+            pathNode = queue.pop(0)
+            pathPosition = pathNode[0]
+            moves = pathNode[1]
+
+            successorPositions = [
+                (pathPosition[0] + 1, pathPosition[1]),
+                (pathPosition[0] - 1, pathPosition[1]),
+                (pathPosition[0], pathPosition[1] + 1),
+                (pathPosition[0], pathPosition[1] - 1)
+            ]
+
+            for position in successorPositions:
+                if position in visitedPositions:
+                    continue
+
+                character = scanMap[position[1]][position[0]]
+                
+                if character is '#' or (character.isupper() and character.lower() not in currentNode.keys):
+                    continue
+                elif character.islower() and character not in currentNode.keys:
+                    newKeys = ''.join(sorted(currentNode.keys + character))
                     updatedPositions = currentNode.positions.copy()
                     updatedPositions[i] = position
-                    successor = SearchNode(updatedPositions, currentNode.moves + 1, currentNode.keys, keyLocations)
+                    successor = SearchNode(updatedPositions, moves + 1, newKeys, keyLocations)
                     successors.append(successor)
-                else:
-                    continue
-            elif character.islower() and character not in currentNode.keys:
-                newKeys = ''.join(sorted(currentNode.keys + character))
-                updatedPositions = currentNode.positions.copy()
-                updatedPositions[i] = position
-                successor = SearchNode(updatedPositions, currentNode.moves + 1, newKeys, keyLocations)
-                successors.append(successor)
-            else:
-                updatedPositions = currentNode.positions.copy()
-                updatedPositions[i] = position
-                successor = SearchNode(updatedPositions, currentNode.moves + 1, currentNode.keys, keyLocations)
-                successors.append(successor)
+
+                queue.append((position, moves + 1))
+
+            visitedPositions.add(pathPosition)
 
     return successors
-
-def _maxDistanceToKey(positions, keys, keyLocations):
-    maxDistance = 0
-
-    for position in positions:
-        for character in keyLocations.keys():
-            if character not in keys:
-                distance = abs(position[0] - keyLocations[character][0]) + abs(position[1] - keyLocations[character][1])
-                if distance > maxDistance:
-                    maxDistance = distance
-
-    return maxDistance
 
 def _buildKey(node):
     key = str(node.positions) + node.keys
