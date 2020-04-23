@@ -2,7 +2,7 @@ from functools import reduce
 from queue import PriorityQueue
 
 class SearchNode:
-    def __init__(self, positions, moves, keys, keyDictionary):
+    def __init__(self, positions, moves, keys):
         self.positions = positions
         self.moves = moves
         self.keys = keys
@@ -70,7 +70,7 @@ def _search(scanMap, startingNode, keyLocations):
             openQueue.task_done()
             continue
 
-        successors = _generateSuccessors(currentNode, scanMap, keyLocations)
+        successors = _generateSuccessors(currentNode, scanMap)
 
         for successor in successors:
             openQueue.put(successor)
@@ -93,10 +93,10 @@ def _getStartingPositionsAndKeyLocations(scanMap):
             elif character is "@":
                 startingPositions.append((j, i))
 
-    startingNodes = SearchNode(startingPositions, 0, '', keyLocations)
+    startingNodes = SearchNode(startingPositions, 0, '')
     return startingNodes, keyLocations
 
-def _generateSuccessors(currentNode, scanMap, keyLocations):
+def _generateSuccessors(currentNode, scanMap):
     successors = []
 
     for i in range(0, len(currentNode.positions)):
@@ -127,7 +127,7 @@ def _generateSuccessors(currentNode, scanMap, keyLocations):
                     newKeys = ''.join(sorted(currentNode.keys + character))
                     updatedPositions = currentNode.positions.copy()
                     updatedPositions[i] = position
-                    successor = SearchNode(updatedPositions, moves + 1, newKeys, keyLocations)
+                    successor = SearchNode(updatedPositions, moves + 1, newKeys)
                     successors.append(successor)
 
                 queue.append((position, moves + 1))
