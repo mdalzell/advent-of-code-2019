@@ -4,16 +4,11 @@ def getProgramFromFile(filePath):
 
 
 class IntCode:
-    memoryBuffer = [0] * 100000
+    __memoryBuffer = [0] * 100000
 
     def __init__(self, program=None, inputs=None):
-        self.__pointer = 0
-        self.__inputPointer = 0
-        self.__relativeBase = 0
-        self.finished = False
-        self.inputs = inputs or []
-        self.program = program + self.memoryBuffer
-        self.output = []
+        self.__initialProgram = program
+        self.__setInitialValues(inputs)
 
     def __getMemoryLocation(self, pos, mode):
         arg = self.__pointer + pos
@@ -101,3 +96,15 @@ class IntCode:
                 return
 
             self.__pointer += step
+
+    def reset(self, inputs = None):
+        self.__setInitialValues(inputs)
+        
+    def __setInitialValues(self, inputs):
+        self.__pointer = 0
+        self.__inputPointer = 0
+        self.__relativeBase = 0
+        self.finished = False
+        self.inputs = inputs or []
+        self.output = []
+        self.program = self.__initialProgram + self.__memoryBuffer
