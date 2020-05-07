@@ -21,3 +21,4 @@ To run the tests, simply run this command from the project's root directory:
 ```bash
 $ python3 -m unittest
 ```
+The tests consist of unit tests of the helpers and solution tests, which use the real input from the problem.  A few of the solution tests are set to skip, since they take a while to run.
