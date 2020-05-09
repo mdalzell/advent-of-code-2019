@@ -7,4 +7,5 @@ class Day20(Solution):
             return getMinimumSteps(maze.readlines())
 
     def part2(self):
-        pass
+        with open(self._dirPath + "/../input/day20.txt") as maze:
+            return getMinimumSteps(maze.readlines(), True)

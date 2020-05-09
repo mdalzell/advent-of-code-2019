@@ -4,11 +4,11 @@ class BfsSearchNode:
         self.position = position
         self.moves = moves
 
-def getMinimumSteps(maze):
-    startingPoint, endingPoint, warpPoints = _parseMaze(maze)
+def getMinimumSteps(maze, multilevel = False):
+    startingPoint, endingPoint, warpPoints = _parseMaze(maze, multilevel)
     return _searchMaze(startingPoint, endingPoint, warpPoints, maze)
 
-def _parseMaze(maze):
+def _parseMaze(maze, multilevel):
     portalDictionary = {}
     warpPoints = {}
     startingPoint = None
@@ -49,15 +49,15 @@ def _parseMaze(maze):
                         portalDictionary[portalKey] = [portalPoint]
 
     for key in portalDictionary.keys():
+        portal = portalDictionary[key][0]
         if key == "AA":
-            startingPoint = portalDictionary[key][0]
+            startingPoint = (portal[0], portal[1], 0)
         elif key == "ZZ":
-            endingPoint = portalDictionary[key][0]
+            endingPoint = (portal[0], portal[1], 0)
         else:
-            warpPointStart = portalDictionary[key][0]
             warpPointEnd = portalDictionary[key][1]
-            warpPoints[warpPointStart] = warpPointEnd
-            warpPoints[warpPointEnd] = warpPointStart
+            warpPoints[portal] = (warpPointEnd[0], warpPointEnd[1], _determineLevelModifier(maze, portal, multilevel))
+            warpPoints[warpPointEnd] = (portal[0], portal[1], _determineLevelModifier(maze, warpPointEnd, multilevel))
 
     return startingPoint, endingPoint, warpPoints
 
@@ -67,6 +67,7 @@ def _searchMaze(startingPoint, endingPoint, warpPoints, maze):
 
     while len(searchNodes) > 0:
         currentNode = searchNodes.pop(0)
+        print(currentNode.position)
 
         if currentNode.position == endingPoint:
             return currentNode.moves
@@ -77,18 +78,21 @@ def _searchMaze(startingPoint, endingPoint, warpPoints, maze):
 
 def _generateSuccessors(node, warpPoints, maze):
     successors = []
-    if node.position in warpPoints:
-        warpPosition = warpPoints[node.position]
-        if warpPosition != node.parent:
-            successors.append(_makeNode(warpPosition, node))
-
     x = node.position[0]
     y = node.position[1]
+    z = node.position[2]
+    if (x, y) in warpPoints:
+        warpPoint = warpPoints[(x, y)]
+        warpPosition = (warpPoint[0], warpPoint[1], warpPoint[2] + z)
+        if warpPosition != node.parent and warpPosition[2] >= 0:
+            successors.append(_makeNode(warpPosition, node))
+
+    
     positions = [
-        (x, y + 1),
-        (x + 1, y),
-        (x, y - 1),
-        (x - 1, y)
+        (x, y + 1, z),
+        (x + 1, y, z),
+        (x, y - 1, z),
+        (x - 1, y, z)
     ]
 
     for position in positions:
@@ -101,3 +105,14 @@ def _generateSuccessors(node, warpPoints, maze):
 
 def _makeNode(position, parent):
     return BfsSearchNode(position, parent.moves + 1, parent.position)
+
+def _determineLevelModifier(maze, point, multlevel):
+    if not multlevel:
+        return 0
+
+    x = point[0]
+    y = point[1]
+    if x > 2 and x < len(maze) - 2 and y > 2 and y < len(maze) - 2:
+        return 1
+    else:
+        return -1

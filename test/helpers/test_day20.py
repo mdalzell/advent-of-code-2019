@@ -68,3 +68,7 @@ class Day18Test(unittest.TestCase):
     def test_getMinimumSteps_case2(self):
         result = getMinimumSteps(self._testMap2)
         self.assertEqual(result, 58)
+
+    def test_getMinimumSteps_case3(self):
+        result = getMinimumSteps(self._testMap, True)
+        self.assertEqual(result, 26)
