@@ -26,4 +26,6 @@ class SpringBot:
         
         print(printString)
 
-testSpringCommands = ['OR A T', 'AND B T', 'AND C T', 'NOT T T', 'AND D T', 'OR T J', 'WALK']
+part1Commands = ['OR A T', 'AND B T', 'AND C T', 'NOT T T', 'AND D T', 'OR T J', 'WALK']
+
+part2Commands = ['OR A T', 'AND B T', 'AND C T', 'NOT T T', 'AND D T', 'OR T J', 'NOT E T', 'NOT T T', 'OR H T', 'AND T J', 'RUN']
