@@ -1,5 +1,5 @@
 from unittest import mock, TestCase, skip
-from aoc2019.solutions import Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11, Day12, Day13, Day14, Day15, Day16, Day17, Day18, Day19, Day20, Day21
+import aoc2019.solutions as solutions
 
 day8image = [['1', '0', '0', '0', '0', '0', '0', '1', '1', '0', '1', '1', '1', '1', '0', '0', '1', '1', '0', '0', '1', '0', '0', '1', '0'],
              ['1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0',
@@ -20,129 +20,129 @@ def plotMock(x, y):
 
 class SolutionsTest(TestCase):
     def test_day1_part1(self):
-        self.assertEqual(Day1().part1(), 3317970)
+        self.assertEqual(solutions.Day1().part1(), 3317970)
 
     def test_day1_part2(self):
-        self.assertEqual(Day1().part2(), 4974073)
+        self.assertEqual(solutions.Day1().part2(), 4974073)
 
     def test_day2_part1(self):
-        self.assertEqual(Day2().part1(), 9581917)
+        self.assertEqual(solutions.Day2().part1(), 9581917)
 
     def test_day2_part2(self):
-        self.assertEqual(Day2().part2(), 2505)
+        self.assertEqual(solutions.Day2().part2(), 2505)
 
     def test_day3_part1(self):
-        self.assertEqual(Day3().part1(), 1626)
+        self.assertEqual(solutions.Day3().part1(), 1626)
 
     def test_day3_part2(self):
-        self.assertEqual(Day3().part2(), 27330)
+        self.assertEqual(solutions.Day3().part2(), 27330)
 
     def test_day4_part1(self):
-        self.assertEqual(Day4().part1(), 1764)
+        self.assertEqual(solutions.Day4().part1(), 1764)
 
     def test_day4_part2(self):
-        self.assertEqual(Day4().part2(), 1196)
+        self.assertEqual(solutions.Day4().part2(), 1196)
 
     def test_day5_part1(self):
-        self.assertEqual(Day5().part1(), [0, 0, 0, 0, 0, 0, 0, 0, 0, 16225258])
+        self.assertEqual(solutions.Day5().part1(), [0, 0, 0, 0, 0, 0, 0, 0, 0, 16225258])
 
     def test_day5_part2(self):
-        self.assertEqual(Day5().part2(), [2808771])
+        self.assertEqual(solutions.Day5().part2(), [2808771])
 
     def test_day6_part1(self):
-        self.assertEqual(Day6().part1(), 261306)
+        self.assertEqual(solutions.Day6().part1(), 261306)
 
     def test_day6_part2(self):
-        self.assertEqual(Day6().part2(), 382)
+        self.assertEqual(solutions.Day6().part2(), 382)
 
     def test_day7_part1(self):
-        self.assertEqual(Day7().part1(), 368584)
+        self.assertEqual(solutions.Day7().part1(), 368584)
 
     def test_day7_part2(self):
-        self.assertEqual(Day7().part2(), 35993240)
+        self.assertEqual(solutions.Day7().part2(), 35993240)
 
     def test_day8_part1(self):
-        self.assertEqual(Day8().part1(), 1792)
+        self.assertEqual(solutions.Day8().part1(), 1792)
 
     def test_day8_part2(self):
-        self.assertEqual(Day8().part2(), day8image)
+        self.assertEqual(solutions.Day8().part2(), day8image)
 
     def test_day9_part1(self):
-        self.assertEqual(Day9().part1(), [3454977209])
+        self.assertEqual(solutions.Day9().part1(), [3454977209])
 
     def test_day9_part2(self):
-        self.assertEqual(Day9().part2(), [50120])
+        self.assertEqual(solutions.Day9().part2(), [50120])
 
     def test_day10_part1(self):
-        self.assertEqual(Day10().part1(), ((13, 17), 269))
+        self.assertEqual(solutions.Day10().part1(), ((13, 17), 269))
 
     def test_day10_part2(self):
-        self.assertEqual(Day10().part2(), 612)
+        self.assertEqual(solutions.Day10().part2(), 612)
 
     def test_day11_part1(self):
-        self.assertEqual(Day11().part1(), 1883)
+        self.assertEqual(solutions.Day11().part1(), 1883)
 
     @mock.patch("aoc2019.solutions.day11.plot", plotMock)
     def test_day11_part2(self):
-        x, y = Day11().part2()
+        x, y = solutions.Day11().part2()
         self.assertEqual(set(x), set(day11part2[0]))
         self.assertEqual(set(y), set(day11part2[1]))
 
     def test_day12_part1(self):
-        self.assertEqual(Day12().part1(), 5937)
+        self.assertEqual(solutions.Day12().part1(), 5937)
 
     def test_day12_part2(self):
-        self.assertEqual(Day12().part2(), 376203951569712)
+        self.assertEqual(solutions.Day12().part2(), 376203951569712)
 
     def test_day13_part1(self):
-        self.assertEqual(Day13().part1(), 312)
+        self.assertEqual(solutions.Day13().part1(), 312)
 
     def test_day13_part2(self):
-        self.assertEqual(Day13().part2(), 15909)
+        self.assertEqual(solutions.Day13().part2(), 15909)
 
     def test_day14_part1(self):
-        self.assertEqual(Day14().part1(), 857266)
+        self.assertEqual(solutions.Day14().part1(), 857266)
 
     def test_day14_part2(self):
-        self.assertEqual(Day14().part2(), 2144702)
+        self.assertEqual(solutions.Day14().part2(), 2144702)
 
     def test_day15_part1(self):
-        self.assertEqual(Day15().part1(), 224)
+        self.assertEqual(solutions.Day15().part1(), 224)
 
     def test_day15_part2(self):
-        self.assertEqual(Day15().part2(), 284)
+        self.assertEqual(solutions.Day15().part2(), 284)
 
     def test_day16_part1(self):
-        self.assertEqual(Day16().part1(), "42205986")
+        self.assertEqual(solutions.Day16().part1(), "42205986")
 
     def test_day16_part2(self):
-        self.assertEqual(Day16().part2(), "13270205")
+        self.assertEqual(solutions.Day16().part2(), "13270205")
 
     def test_day17_part1(self):
-        self.assertEqual(Day17().part1(), 11140)
+        self.assertEqual(solutions.Day17().part1(), 11140)
 
     def test_day17_part2(self):
-        self.assertEqual(Day17().part2(), 1113108)
+        self.assertEqual(solutions.Day17().part2(), 1113108)
 
     @skip("Too slow to test :(")
     def test_day18_part1(self):
-        self.assertEqual(Day18().part1(), 6286)
+        self.assertEqual(solutions.Day18().part1(), 6286)
 
     @skip("Too slow to test :(")
     def test_day18_part2(self):
-        self.assertEqual(Day18().part2(), 2140)
+        self.assertEqual(solutions.Day18().part2(), 2140)
 
     def test_day19_part1(self):
-        self.assertEqual(Day19().part1(), 131)
+        self.assertEqual(solutions.Day19().part1(), 131)
 
     def test_day19_part2(self):
-        self.assertEqual(Day19().part2(), 15231022)
+        self.assertEqual(solutions.Day19().part2(), 15231022)
 
     def test_day20_part1(self):
-        self.assertEqual(Day20().part1(), 578)
+        self.assertEqual(solutions.Day20().part1(), 578)
 
     def test_day20_part2(self):
-        self.assertEqual(Day20().part2(), 6592)
+        self.assertEqual(solutions.Day20().part2(), 6592)
 
     def test_day21_part1(self):
-        self.assertEqual(Day21().part1(), 19354890)
+        self.assertEqual(solutions.Day21().part1(), 19354890)
