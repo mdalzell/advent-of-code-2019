@@ -1,5 +1,5 @@
 from unittest import mock, TestCase, skip
-from aoc2019.solutions import Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11, Day12, Day13, Day14, Day15, Day16, Day17, Day18, Day19, Day20
+from aoc2019.solutions import Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10, Day11, Day12, Day13, Day14, Day15, Day16, Day17, Day18, Day19, Day20, Day21
 
 day8image = [['1', '0', '0', '0', '0', '0', '0', '1', '1', '0', '1', '1', '1', '1', '0', '0', '1', '1', '0', '0', '1', '0', '0', '1', '0'],
              ['1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0',
@@ -143,3 +143,6 @@ class SolutionsTest(TestCase):
 
     def test_day20_part2(self):
         self.assertEqual(Day20().part2(), 6592)
+
+    def test_day21_part1(self):
+        self.assertEqual(Day21().part1(), 19354890)
