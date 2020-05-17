@@ -155,3 +155,6 @@ class SolutionsTest(TestCase):
 
     def test_day22_part2(self):
         self.assertEqual(solutions.Day22().part2(), 58348342289943)
+
+    def test_day23_part1(self):
+        self.assertEqual(solutions.Day23().part1(), 18513)
