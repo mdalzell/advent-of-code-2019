@@ -1,3 +1,21 @@
+from enum import Enum
+
+class Mode(Enum):
+    POSITION = 1
+    RELATIVE = 2
+
+class OpCode(Enum):
+    ADD = 1
+    MULTIPLY = 2
+    INPUT = 3
+    OUTPUT = 4
+    JUMP_IF_TRUE = 5
+    JUMP_IF_FALSE = 6
+    LESS_THAN = 7
+    EQUALS = 8
+    ADJUST_RELATIVE_BASE = 9
+    FINISHED = 99
+
 def getProgramFromFile(filePath):
     with open(filePath) as input:
         return list(map(int, input.readline().split(',')))
@@ -12,9 +30,9 @@ class IntCode:
 
     def __getMemoryLocation(self, pos, mode):
         arg = self.__pointer + pos
-        if mode is 1:
+        if mode is Mode.POSITION.value:
             return arg
-        elif mode is 2:
+        elif mode is Mode.RELATIVE.value:
             return self.__relativeBase + self.program[arg]
         else:
             return self.program[arg]
@@ -36,19 +54,19 @@ class IntCode:
                         ) if len(opcodeString) > 4 else 0
 
             step = 0
-            if opcode == 1:
+            if opcode == OpCode.ADD.value:
                 param1 = self.program[self.__getMemoryLocation(1, mode1)]
                 param2 = self.program[self.__getMemoryLocation(2, mode2)]
                 self.program[self.__getMemoryLocation(
                     3, mode3)] = param1 + param2
                 step += 4
-            elif opcode == 2:
+            elif opcode == OpCode.MULTIPLY.value:
                 param1 = self.program[self.__getMemoryLocation(1, mode1)]
                 param2 = self.program[self.__getMemoryLocation(2, mode2)]
                 self.program[self.__getMemoryLocation(
                     3, mode3)] = param1 * param2
                 step += 4
-            elif opcode == 3:
+            elif opcode == OpCode.INPUT.value:
                 if self.__inputPointer < len(self.inputs):
                     inputVal = self.inputs[self.__inputPointer]
                     self.program[self.__getMemoryLocation(
@@ -57,41 +75,41 @@ class IntCode:
                     step += 2
                 else:
                     return
-            elif opcode == 4:
+            elif opcode == OpCode.OUTPUT.value:
                 printVal = self.program[self.__getMemoryLocation(1, mode1)]
                 self.output.append(printVal)
                 step += 2
-            elif opcode == 5:
+            elif opcode == OpCode.JUMP_IF_TRUE.value:
                 param1 = self.program[self.__getMemoryLocation(1, mode1)]
                 param2 = self.program[self.__getMemoryLocation(2, mode2)]
                 if param1 != 0:
                     self.__pointer = param2
                 else:
                     step += 3
-            elif opcode == 6:
+            elif opcode == OpCode.JUMP_IF_FALSE.value:
                 param1 = self.program[self.__getMemoryLocation(1, mode1)]
                 param2 = self.program[self.__getMemoryLocation(2, mode2)]
                 if param1 == 0:
                     self.__pointer = param2
                 else:
                     step += 3
-            elif opcode == 7:
+            elif opcode == OpCode.LESS_THAN.value:
                 param1 = self.program[self.__getMemoryLocation(1, mode1)]
                 param2 = self.program[self.__getMemoryLocation(2, mode2)]
                 self.program[self.__getMemoryLocation(
                     3, mode3)] = 1 if param1 < param2 else 0
                 step += 4
-            elif opcode == 8:
+            elif opcode == OpCode.EQUALS.value:
                 param1 = self.program[self.__getMemoryLocation(1, mode1)]
                 param2 = self.program[self.__getMemoryLocation(2, mode2)]
                 self.program[self.__getMemoryLocation(
                     3, mode3)] = 1 if param1 == param2 else 0
                 step += 4
-            elif opcode == 9:
+            elif opcode == OpCode.ADJUST_RELATIVE_BASE.value:
                 param1 = self.program[self.__getMemoryLocation(1, mode1)]
                 self.__relativeBase += param1
                 step += 2
-            elif opcode == 99:
+            elif opcode == OpCode.FINISHED.value:
                 self.finished = True
                 return
 
