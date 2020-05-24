@@ -1,6 +1,6 @@
 from aoc2019.shared.solution import Solution
 from aoc2019.shared.intcode import getProgramFromFile
-from aoc2019.helpers.day23 import buildNetwork, findFirstPacketToAddress
+from aoc2019.helpers.day23 import buildNetwork, findFirstPacketToAddress, findFirstRepeatedNatValue
 
 
 class Day23(Solution):
@@ -11,4 +11,6 @@ class Day23(Solution):
         return packet.y
 
     def part2(self):
-        pass
+        program = getProgramFromFile(self._dirPath + "/../input/day23.txt")
+        network = buildNetwork(program)
+        return findFirstRepeatedNatValue(network)

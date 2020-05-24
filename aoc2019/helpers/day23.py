@@ -31,6 +31,9 @@ class NetworkComputer:
     def addPacketToQueue(self, packet):
         self.__queue.append(packet)
 
+    def isQueueEmpty(self):
+        return len(self.__queue) == 0
+
 class Packet:
     def __init__(self, destination, x, y):
         self.destination = destination
@@ -55,3 +58,32 @@ def findFirstPacketToAddress(network, address):
                     return packet
                 else:
                     network[packet.destination].addPacketToQueue(packet)
+
+def findFirstRepeatedNatValue(network):
+    nat = None
+    natValues = set()
+
+    while True:
+        isIdle = True
+        for id in network.keys():
+            computer = network[id]
+            outgoingPackets = computer.processRequests()
+
+            for packet in outgoingPackets:
+                if packet.destination == 255:
+                    nat = packet
+                else:
+                    network[packet.destination].addPacketToQueue(packet)
+
+        for id in network.keys():
+            computer = network[id]
+            if not computer.isQueueEmpty():
+                isIdle = False
+
+        if isIdle:
+            network[0].addPacketToQueue(nat)
+            if nat.y in natValues:
+                return nat.y
+            else:
+                natValues.add(nat.y)
+
