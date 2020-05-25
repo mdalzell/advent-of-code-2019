@@ -5,12 +5,14 @@ from aoc2019.helpers.day23 import buildNetwork, findFirstPacketToAddress, findFi
 
 class Day23(Solution):
     def part1(self):
-        program = getProgramFromFile(self._dirPath + "/../input/day23.txt")
-        network = buildNetwork(program)
+        network = self.__buildNetwork()
         packet = findFirstPacketToAddress(network, 255)
         return packet.y
 
     def part2(self):
-        program = getProgramFromFile(self._dirPath + "/../input/day23.txt")
-        network = buildNetwork(program)
+        network = self.__buildNetwork()
         return findFirstRepeatedNatValue(network)
+
+    def __buildNetwork(self):
+        program = getProgramFromFile(self._dirPath + "/../input/day23.txt")
+        return buildNetwork(program)
