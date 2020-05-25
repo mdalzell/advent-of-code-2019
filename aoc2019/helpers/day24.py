@@ -1,5 +1,7 @@
+__SEPERATOR = '/'
+
 def calculateBiodiversityRating(layout):
-    layoutString = layout.replace('/', '')
+    layoutString = layout.replace(__SEPERATOR, '')
     biodiveristyRating = 0
     for i in range(0, len(layoutString)):
         if layoutString[i] == '#':
@@ -22,7 +24,7 @@ def getFirstLayoutToAppearTwice(layout):
             currentLayout = nextLayout
 
 def __calculateNextLayout(currentLayout):
-    currentLayoutMatrix = currentLayout.split('/')
+    currentLayoutMatrix = currentLayout.split(__SEPERATOR)
     columnLength = len(currentLayoutMatrix)
     rowLength = len(currentLayoutMatrix[0])
 
@@ -48,4 +50,4 @@ def __calculateNextLayout(currentLayout):
 
             nextLayoutMatrix[j] += nextSpace
 
-    return '/'.join(nextLayoutMatrix)
+    return __SEPERATOR.join(nextLayoutMatrix)
