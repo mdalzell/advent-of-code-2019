@@ -1,5 +1,5 @@
 from aoc2019.shared.solution import Solution
-from aoc2019.helpers.day24 import getFirstLayoutToAppearTwice, calculateBiodiversityRating
+from aoc2019.helpers.day24 import getFirstLayoutToAppearTwice, calculateBiodiversityRating, countBugsAfterMinutes
 
 class Day24(Solution):
     def part1(self):
@@ -8,4 +8,5 @@ class Day24(Solution):
         return calculateBiodiversityRating(repeatedLayout)
 
     def part2(self):
-        pass
+        startingLayout = '#..../#...#/##?##/....#/#.##.'
+        return countBugsAfterMinutes(startingLayout, 200)
