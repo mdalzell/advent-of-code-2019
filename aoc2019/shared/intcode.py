@@ -41,6 +41,7 @@ class IntCode:
         self.output = []
 
     def run(self):
+        self.requiresInput = False
         while not self.finished:
             opcodeString = str(self.program[self.__pointer])
             opcodeLastIndex = len(opcodeString) - 1
@@ -74,6 +75,7 @@ class IntCode:
                     self.__inputPointer += 1
                     step += 2
                 else:
+                    self.requiresInput = True
                     return
             elif opcode == OpCode.OUTPUT.value:
                 printVal = self.program[self.__getMemoryLocation(1, mode1)]
@@ -126,3 +128,4 @@ class IntCode:
         self.inputs = inputs or []
         self.output = []
         self.program = self.__initialProgram + self.__memoryBuffer
+        self.requiresInput = False

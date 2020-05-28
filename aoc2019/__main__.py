@@ -8,4 +8,5 @@ if __name__ == '__main__':
     solutionFactory = SolutionFactory()
 
     solution = solutionFactory.getSolution(day)
-    print(solution.part2() if part == "2" else solution.part1())
+    result = solution.part2() if part == "2" else solution.part1()
+    if result is not None: print(result)
